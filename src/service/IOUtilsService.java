@@ -11,6 +11,13 @@ import java.util.List;
 
 public class IOUtilsService<T> {
     static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    Type type;
+
+    public IOUtilsService() {}
+
+    public IOUtilsService(Type type) {
+        this.type = type;
+    }
 
     public void write(String path, List<T> arr) {
         String json = arrToJson(arr);
@@ -45,7 +52,7 @@ public class IOUtilsService<T> {
             while ((temp = bufferedReader.readLine()) != null) {
                 s += temp;
             }
-            list = gson.fromJson(s, new TypeToken<>() {});
+            list = gson.fromJson(s, type);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -56,7 +63,7 @@ public class IOUtilsService<T> {
                 e.getCause();
             }
         }
-        return list;
+        return list != null ? list : new ArrayList<>();
     }
 
     public List<T> jsonToArr(String s) {

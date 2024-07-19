@@ -66,3 +66,5 @@ public class NotificationService implements BaseService<Notification> {
         return filteredNotifications;
     }
 }
+
+}
