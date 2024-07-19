@@ -1,22 +1,34 @@
 package models;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class Notification {
     private UUID id;
+    private String title;
     private UUID userId;
     private UUID postId;
-    private boolean isRead;
+    private Map<UUID, Boolean> isReadMap = new HashMap<>();
 
     public Notification() {
         this.id = UUID.randomUUID();
     }
 
-    public Notification(UUID userId, UUID postId, boolean isRead) {
+    public Notification(UUID userId, UUID postId, String title) {
         this();
         this.userId = userId;
         this.postId = postId;
-        this.isRead = isRead;
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public UUID getId() {
@@ -39,11 +51,11 @@ public class Notification {
         this.postId = postId;
     }
 
-    public boolean isRead() {
-        return isRead;
+    public Map<UUID, Boolean> getIsReadMap() {
+        return isReadMap;
     }
 
-    public void setRead(boolean read) {
-        isRead = read;
+    public void setIsReadMap(Map<UUID, Boolean> isReadMap) {
+        this.isReadMap = isReadMap;
     }
 }

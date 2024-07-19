@@ -8,6 +8,7 @@ public class Comment {
     private String text;
     private UUID replyCommentId;
     private UUID postId;
+    private String userName;
 
     public Comment() {
         this.id = UUID.randomUUID();
@@ -18,6 +19,13 @@ public class Comment {
         this.userId = userId;
         this.text = text;
         this.replyCommentId = replyCommentId;
+        this.postId = postId;
+    }
+
+    public Comment(UUID userId, String comment, UUID postId) {
+        this();
+        this.userId = userId;
+        this.text = comment;
         this.postId = postId;
     }
 
@@ -55,5 +63,13 @@ public class Comment {
 
     public void setPostId(UUID postId) {
         this.postId = postId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
